@@ -5,6 +5,34 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>frontend-campesena</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              sena: {
+                verde: '#39a900', // Verde institucional del mockup
+                oscuro: '#052e16', // Color de la barra lateral
+                claro: '#f0fdf4',
+              }
+            }
+          }
+        }
+      }
+    </script>
+
+    <style>
+      /* Usamos CSS estándar para evitar errores de compilación en el navegador */
+      body {
+        background-color: #f9fafb; /* bg-gray-50 */
+        color: #111827;            /* text-gray-900 */
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
