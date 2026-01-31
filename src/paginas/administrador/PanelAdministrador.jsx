@@ -23,13 +23,12 @@ const CardMetrica = ({ titulo, valor, cambio, icono, colorIcono, esPositivo = tr
 
 const PanelAdministrador = () => {
   return (
-    <div className="space-y-8"> {/* Quitamos ml-64 y p-8 porque el ContenedorPagina ya los tiene */}
+    <div className="space-y-8"> 
       <header>
         <h1 className="text-2xl font-bold text-gray-800">Dashboard Informativo</h1>
         <p className="text-gray-500 text-sm">Resumen en tiempo real del sistema CampeSENA</p>
       </header>
 
-      {/* Grid de Métricas - 6 Columnas en pantallas grandes */}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <CardMetrica 
           titulo="Solicitudes" 
@@ -76,7 +75,6 @@ const PanelAdministrador = () => {
         />
       </div>
 
-      {/* Sección de Gráficos */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Gráfico de Barras */}
         <div className="lg:col-span-2 bg-white p-6 rounded-xl shadow-sm border border-gray-100">

@@ -1,4 +1,3 @@
-// src/navegacion/EnrutadorPrincipal.jsx (fragmento)
 import { Routes, Route } from 'react-router-dom';
 import IniciarSesion from '../autenticacion/IniciarSesion';
 import CerrarSesion from '../autenticacion/CerrarSesion';
