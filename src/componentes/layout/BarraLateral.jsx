@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { 
   LayoutDashboard, FileText, Users, Settings, Globe, 
-  BarChart3, LogOut, ChevronDown, ChevronUp
+  LogOut, ChevronDown, ChevronUp
 } from 'lucide-react';
 
 const BarraLateral = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [openUsuarios, setOpenUsuarios] = useState(false);
-  const [openConfig, setOpenConfig] = useState(true); // Abierto por defecto según tus capturas
+  const [openConfig, setOpenConfig] = useState(true); // Se mantiene abierto por defecto
 
   const handleCerrarSesion = () => {
     localStorage.clear();
@@ -74,6 +74,7 @@ const BarraLateral = () => {
           )}
         </div>
 
+        {/* PORTAL */}
         <NavLink to="/admin/portal" className={({ isActive }) => `flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${isActive ? 'bg-[#39a900] text-white' : 'hover:bg-[#1a3d21] text-gray-300'}`}>
           <Globe size={20}/><span className="font-medium text-sm">Portal</span>
         </NavLink>
