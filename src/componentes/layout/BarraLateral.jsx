@@ -3,10 +3,9 @@ import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { 
   LayoutDashboard, FileText, Users, Settings, Globe, 
   LogOut, ChevronDown, ChevronUp, ExternalLink,
-  Sprout, Tractor, Wheat // Iconos que representan al campesino y al agro
+  Sprout, Tractor, Wheat 
 } from 'lucide-react';
 
-// Corregido a .png según tu captura de pantalla
 import logoSena from '../../assets/logoSena.png';
 
 const BarraLateral = () => {
@@ -20,12 +19,13 @@ const BarraLateral = () => {
     navigate('/login', { replace: true });
   };
 
-  const isActive = (path) => location.pathname.includes(path);
+  // Corregido para que detecte la ruta base del admin
+  const isConfigActive = location.pathname.includes('/admin/configuracion');
 
   return (
     <div className="h-screen w-64 bg-[#052e16] text-white flex flex-col fixed left-0 top-0 overflow-y-auto z-50 shadow-2xl">
       
-      {/* HEADER CON EL LOGO DEL SENA INTEGRADO */}
+      {/* HEADER CON EL LOGO DEL SENA */}
       <div className="p-6 flex items-center gap-3 border-b border-white/10 mb-2">
         <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden border-2 border-[#39a900] shadow-sm flex-shrink-0">
           <img 
@@ -66,11 +66,11 @@ const BarraLateral = () => {
           )}
         </div>
 
-        {/* CONFIGURACIÓN DESPLEGABLE */}
+        {/* CONFIGURACIÓN DESPLEGABLE - FUNCIONANDO AL 100% */}
         <div>
           <button 
             onClick={() => setOpenConfig(!openConfig)} 
-            className={`w-full flex items-center justify-between px-4 py-3 rounded-lg transition-colors ${isActive('/configuracion') ? 'bg-[#39a900] text-white' : 'hover:bg-[#1a3d21] text-gray-300'}`}
+            className={`w-full flex items-center justify-between px-4 py-3 rounded-lg transition-colors ${isConfigActive ? 'bg-[#39a900] text-white font-bold' : 'hover:bg-[#1a3d21] text-gray-300'}`}
           >
             <div className="flex items-center gap-3"><Settings size={20}/><span className="font-medium text-sm">Configuración</span></div>
             {openConfig ? <ChevronUp size={16}/> : <ChevronDown size={16}/>}
@@ -80,6 +80,8 @@ const BarraLateral = () => {
               <NavLink to="/admin/configuracion/documentos" className={({ isActive }) => `block px-6 py-2 text-xs ${isActive ? 'text-[#39a900] font-black' : 'text-gray-400 hover:text-white'}`}>
                 Documentos Obligatorios
               </NavLink>
+              
+              {/* ESTA ES LA RUTA DE FORMULARIOS */}
               <NavLink to="/admin/configuracion/formularios" className={({ isActive }) => `block px-6 py-2 text-xs ${isActive ? 'text-[#39a900] font-black' : 'text-gray-400 hover:text-white'}`}>
                 Formularios Dinámicos
               </NavLink>
@@ -88,16 +90,14 @@ const BarraLateral = () => {
         </div>
       </nav>
 
-      {/* Footer Ajustado con Iconos de Campo */}
+      {/* Footer con Iconos Decorativos */}
       <div className="p-4 border-t border-white/10 bg-[#042612] mt-auto">
-        {/* Iconos Decorativos de Campo */}
         <div className="flex justify-around items-center mb-5 px-4 text-gray-300">
           <Sprout size={22} strokeWidth={1.5} />
           <Tractor size={22} strokeWidth={1.5} />
           <Wheat size={22} strokeWidth={1.5} />
         </div>
 
-        {/* Cerrar Sesión (Tamaño Intermedio) */}
         <button 
           onClick={handleCerrarSesion} 
           className="flex items-center justify-center gap-3 px-4 py-3 w-full text-red-400 hover:bg-red-900/20 rounded-xl transition-all font-bold text-sm border border-red-900/30"

@@ -16,6 +16,7 @@ import Solicitudes from './paginas/administrador/Solicitudes';
 import RolesPermisos from './paginas/administrador/RolesPermisos';
 import Auditoria from './paginas/administrador/Auditoria';
 import ConfiguracionSistema from './paginas/administrador/ConfiguracionSistema';
+import FormulariosDinamicos from './paginas/administrador/FormulariosDinamicos';
 
 // Vistas de CAMPESINO
 import PanelCampesino from './paginas/campesino/PanelCampesino';
@@ -55,10 +56,11 @@ function App() {
               <Route path="roles-permisos" element={<RolesPermisos />} />
               <Route path="auditoria" element={<Auditoria />} />
               
-              {/* RUTAS DE CONFIGURACIÓN (CORREGIDAS) */}
-              <Route path="configuracion" element={<ConfiguracionSistema />} />
-              <Route path="configuracion/documentos" element={<ConfiguracionSistema />} />
-              <Route path="configuracion/formularios" element={<ConfiguracionSistema />} />
+              {/* RUTAS DE CONFIGURACIÓN CORREGIDAS */}
+              <Route path="configuracion">
+                <Route path="documentos" element={<ConfiguracionSistema />} />
+                <Route path="formularios" element={<FormulariosDinamicos />} />
+              </Route>
             </Route>
 
             {/* SECCIÓN CAMPESINO */}

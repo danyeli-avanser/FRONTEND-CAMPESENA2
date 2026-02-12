@@ -41,14 +41,14 @@ const IniciarSesion = () => {
         
         {/* CABECERA */}
         <div className="bg-[#052e16] p-8 text-center">
-          {/* Logo del SENA contenedor corregido */}
+          {/* Logo del SENA  */}
           <div className="w-20 h-20 bg-white rounded-full mx-auto flex items-center justify-center mb-4 shadow-md overflow-hidden p-2">
             {logoSena ? (
               <img 
                 src={logoSena} 
                 alt="Logo SENA" 
                 className="w-full h-full object-contain"
-                onError={(e) => { e.target.style.display = 'none'; }} // Evita icono de imagen rota
+                onError={(e) => { e.target.style.display = 'none'; }} 
               />
             ) : (
               <span className="text-[#052e16] font-bold text-2xl">S</span>
