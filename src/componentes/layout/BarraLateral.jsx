@@ -2,14 +2,18 @@ import React, { useState } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { 
   LayoutDashboard, FileText, Users, Settings, Globe, 
-  LogOut, ChevronDown, ChevronUp
+  LogOut, ChevronDown, ChevronUp, ExternalLink,
+  Sprout, Tractor, Wheat // Iconos que representan al campesino y al agro
 } from 'lucide-react';
+
+// Corregido a .png según tu captura de pantalla
+import logoSena from '../../assets/logoSena.png';
 
 const BarraLateral = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [openUsuarios, setOpenUsuarios] = useState(false);
-  const [openConfig, setOpenConfig] = useState(true); // Se mantiene abierto por defecto
+  const [openConfig, setOpenConfig] = useState(true);
 
   const handleCerrarSesion = () => {
     localStorage.clear();
@@ -19,12 +23,21 @@ const BarraLateral = () => {
   const isActive = (path) => location.pathname.includes(path);
 
   return (
-    <div className="h-screen w-64 bg-[#052e16] text-white flex flex-col fixed left-0 top-0 overflow-y-auto z-50">
-      <div className="p-6 flex items-center gap-3">
-        <div className="w-8 h-8 bg-white rounded-md flex items-center justify-center">
-          <span className="text-[#052e16] font-bold text-xl italic">S</span>
+    <div className="h-screen w-64 bg-[#052e16] text-white flex flex-col fixed left-0 top-0 overflow-y-auto z-50 shadow-2xl">
+      
+      {/* HEADER CON EL LOGO DEL SENA INTEGRADO */}
+      <div className="p-6 flex items-center gap-3 border-b border-white/10 mb-2">
+        <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden border-2 border-[#39a900] shadow-sm flex-shrink-0">
+          <img 
+            src={logoSena} 
+            alt="Logo SENA" 
+            className="w-full h-full object-contain p-1" 
+          />
         </div>
-        <h1 className="text-xl font-bold tracking-tight">CampeSENA</h1>
+        <div className="flex flex-col">
+          <h1 className="text-xl font-bold tracking-tight leading-none">CampeSENA</h1>
+          <span className="text-[10px] text-[#39a900] font-bold uppercase mt-1 tracking-wider">ADMINISTRADOR</span>
+        </div>
       </div>
 
       <nav className="flex-1 px-4 mt-2 space-y-1">
@@ -73,26 +86,27 @@ const BarraLateral = () => {
             </div>
           )}
         </div>
-
-        {/* PORTAL */}
-        <NavLink to="/admin/portal" className={({ isActive }) => `flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${isActive ? 'bg-[#39a900] text-white' : 'hover:bg-[#1a3d21] text-gray-300'}`}>
-          <Globe size={20}/><span className="font-medium text-sm">Portal</span>
-        </NavLink>
       </nav>
 
-      {/* Footer Perfil */}
-      <div className="p-4 border-t border-[#1a3d21] bg-[#042612]">
-        <div className="flex items-center gap-3 mb-4 px-2">
-          <div className="w-9 h-9 bg-[#39a900] rounded-full flex items-center justify-center font-bold text-white shadow-md">AD</div>
-          <div className="text-sm">
-            <p className="font-bold text-[13px]">Admin SENA</p>
-            <p className="text-[10px] text-gray-400 uppercase font-black">Sede Central</p>
-          </div>
+      {/* Footer Ajustado con Iconos de Campo */}
+      <div className="p-4 border-t border-white/10 bg-[#042612] mt-auto">
+        {/* Iconos Decorativos de Campo */}
+        <div className="flex justify-around items-center mb-5 px-4 text-gray-300">
+          <Sprout size={22} strokeWidth={1.5} />
+          <Tractor size={22} strokeWidth={1.5} />
+          <Wheat size={22} strokeWidth={1.5} />
         </div>
-        <button onClick={handleCerrarSesion} className="flex items-center gap-3 px-4 py-2.5 w-full text-red-400 hover:bg-red-900/20 rounded-xl transition-all font-bold text-xs">
-          <LogOut size={18}/><span>Cerrar Sesión</span>
+
+        {/* Cerrar Sesión (Tamaño Intermedio) */}
+        <button 
+          onClick={handleCerrarSesion} 
+          className="flex items-center justify-center gap-3 px-4 py-3 w-full text-red-400 hover:bg-red-900/20 rounded-xl transition-all font-bold text-sm border border-red-900/30"
+        >
+          <LogOut size={20}/>
+          <span>Cerrar Sesión</span>
         </button>
       </div>
+
     </div>
   );
 };

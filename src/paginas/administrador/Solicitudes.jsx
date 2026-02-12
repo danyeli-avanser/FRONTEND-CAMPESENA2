@@ -63,10 +63,6 @@ const Solicitudes = () => {
               onChange={(e) => setBusqueda(e.target.value)}
             />
           </div>
-          <div className="relative p-2.5 bg-white rounded-2xl border border-gray-100 shadow-sm text-gray-400">
-            <Bell size={20} />
-            <span className="absolute top-1 right-1 w-4 h-4 bg-[#39a900] text-white text-[10px] flex items-center justify-center rounded-full font-black">3</span>
-          </div>
         </div>
       </div>
 
