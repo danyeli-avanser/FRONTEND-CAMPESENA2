@@ -19,7 +19,6 @@ const BarraLateral = () => {
     navigate('/login', { replace: true });
   };
 
-  // Corregido para que detecte la ruta base del admin
   const isConfigActive = location.pathname.includes('/admin/configuracion');
 
   return (
@@ -41,11 +40,13 @@ const BarraLateral = () => {
       </div>
 
       <nav className="flex-1 px-4 mt-2 space-y-1">
+        {/* DASHBOARD */}
         <NavLink to="/admin/dashboard" className={({ isActive }) => `flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${isActive ? 'bg-[#39a900] text-white' : 'hover:bg-[#1a3d21] text-gray-300'}`}>
           <LayoutDashboard size={20}/>
           <span className="font-medium text-sm">Dashboard</span>
         </NavLink>
 
+        {/* SOLICITUDES */}
         <NavLink to="/admin/solicitudes" className={({ isActive }) => `flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${isActive ? 'bg-[#39a900] text-white' : 'hover:bg-[#1a3d21] text-gray-300'}`}>
           <FileText size={20}/>
           <span className="font-medium text-sm">Solicitudes</span>
@@ -53,12 +54,12 @@ const BarraLateral = () => {
 
         {/* USUARIOS DESPLEGABLE */}
         <div>
-          <button onClick={() => setOpenUsuarios(!openUsuarios)} className="w-full flex items-center justify-between px-4 py-3 rounded-lg hover:bg-[#1a3d21] text-gray-300 transition-colors">
+          <button onClick={() => setOpenUsuarios(!openUsuarios)} className="w-full flex items-center justify-between px-4 py-3 rounded-lg hover:bg-[#1a3d21] text-gray-300 transition-colors text-left">
             <div className="flex items-center gap-3"><Users size={20}/><span className="font-medium text-sm">Usuarios</span></div>
             {openUsuarios ? <ChevronUp size={16}/> : <ChevronDown size={16}/>}
           </button>
           {openUsuarios && (
-            <div className="ml-6 mt-1 space-y-1 border-l border-white/10">
+            <div className="ml-6 mt-1 space-y-1 border-l border-white/10 animate-in slide-in-from-top-1">
               <NavLink to="/admin/usuarios" className={({ isActive }) => `block px-6 py-2 text-xs ${isActive ? 'text-[#39a900] font-bold' : 'text-gray-400 hover:text-white'}`}>Listado de Usuarios</NavLink>
               <NavLink to="/admin/roles-permisos" className={({ isActive }) => `block px-6 py-2 text-xs ${isActive ? 'text-[#39a900] font-bold' : 'text-gray-400 hover:text-white'}`}>Roles y Permisos</NavLink>
               <NavLink to="/admin/auditoria" className={({ isActive }) => `block px-6 py-2 text-xs ${isActive ? 'text-[#39a900] font-bold' : 'text-gray-400 hover:text-white'}`}>Auditoría</NavLink>
@@ -66,31 +67,41 @@ const BarraLateral = () => {
           )}
         </div>
 
-        {/* CONFIGURACIÓN DESPLEGABLE - FUNCIONANDO AL 100% */}
+        {/* CONFIGURACIÓN DESPLEGABLE */}
         <div>
           <button 
             onClick={() => setOpenConfig(!openConfig)} 
-            className={`w-full flex items-center justify-between px-4 py-3 rounded-lg transition-colors ${isConfigActive ? 'bg-[#39a900] text-white font-bold' : 'hover:bg-[#1a3d21] text-gray-300'}`}
+            className={`w-full flex items-center justify-between px-4 py-3 rounded-lg transition-colors ${isConfigActive ? 'bg-[#39a900] text-white font-bold' : 'hover:bg-[#1a3d21] text-gray-300'} text-left`}
           >
             <div className="flex items-center gap-3"><Settings size={20}/><span className="font-medium text-sm">Configuración</span></div>
             {openConfig ? <ChevronUp size={16}/> : <ChevronDown size={16}/>}
           </button>
           {openConfig && (
-            <div className="ml-6 mt-1 space-y-1 border-l border-white/10 animate-in slide-in-from-top-2">
-              <NavLink to="/admin/configuracion/documentos" className={({ isActive }) => `block px-6 py-2 text-xs ${isActive ? 'text-[#39a900] font-black' : 'text-gray-400 hover:text-white'}`}>
-                Documentos Obligatorios
-              </NavLink>
-              
-              {/* ESTA ES LA RUTA DE FORMULARIOS */}
-              <NavLink to="/admin/configuracion/formularios" className={({ isActive }) => `block px-6 py-2 text-xs ${isActive ? 'text-[#39a900] font-black' : 'text-gray-400 hover:text-white'}`}>
-                Formularios Dinámicos
-              </NavLink>
+            <div className="ml-6 mt-1 space-y-1 border-l border-white/10 animate-in slide-in-from-top-1">
+              <NavLink to="/admin/configuracion/documentos" className={({ isActive }) => `block px-6 py-2 text-xs ${isActive ? 'text-[#39a900] font-black' : 'text-gray-400 hover:text-white'}`}>Documentos Obligatorios</NavLink>
+              <NavLink to="/admin/configuracion/formularios" className={({ isActive }) => `block px-6 py-2 text-xs ${isActive ? 'text-[#39a900] font-black' : 'text-gray-400 hover:text-white'}`}>Formularios Dinámicos</NavLink>
             </div>
           )}
         </div>
+
+        {/* ENLACE AL PORTAL SENA (REINTEGRADO) */}
+        <div className="pt-4 mt-4 border-t border-white/10">
+          <a 
+            href="https://www.sena.edu.co/es-co/Paginas/default.aspx" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="flex items-center justify-between gap-3 px-4 py-3 rounded-lg text-gray-400 hover:bg-[#1a3d21] hover:text-white transition-all group"
+          >
+            <div className="flex items-center gap-3">
+              <Globe size={20} className="group-hover:text-[#39a900] transition-colors" />
+              <span className="font-medium text-sm">Portal</span>
+            </div>
+            <ExternalLink size={14} className="opacity-50 group-hover:opacity-100" />
+          </a>
+        </div>
       </nav>
 
-      {/* Footer con Iconos Decorativos */}
+      {/* FOOTER CON ICONOS Y CERRAR SESIÓN */}
       <div className="p-4 border-t border-white/10 bg-[#042612] mt-auto">
         <div className="flex justify-around items-center mb-5 px-4 text-gray-300">
           <Sprout size={22} strokeWidth={1.5} />
